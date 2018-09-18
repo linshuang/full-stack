@@ -4,3 +4,5 @@
 ## java web
 
 ![avatar](./pics/java-web.png)
+
+![avatar](./pics/JVM.png)
