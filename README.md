@@ -5,16 +5,10 @@
 
 奈何写着写着想法也越来越多，想添加到图谱的东西也越来越多、越来越深入，也知道一个人的知识毕竟有限，所以想着可以约一些朋友一起来修订这个图谱。
 
-<<<<<<< HEAD
-## 协作者
-- [翔宇](https://github.com/philsavor)
-- [林爽](https://github.com/linshuang)
-=======
 ## 作者
 - [chainal](https://github.com/chainal)
 - [philsavor](https://github.com/philsavor)
 - [linshuang](https://github.com/linshuang)
->>>>>>> 44406c4820ae7d3d4827e0fd49267e39657511cf
 
 ## 目录结构
 以下是当前项目的一个目录片段
