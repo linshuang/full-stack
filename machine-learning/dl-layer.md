@@ -7,7 +7,7 @@ dropout的提出主要是为了训练中防止网络过拟合，其原理是随�
 ## batch normalization
 BN的提出还是为了克服深度神经网络难以训练的弊病。传统的神经网络，只是在将样本x输入输入层之前对x进行标准化处理（减均值，除标准差），以降低样本间的差异性。BN是在此基础上，不仅仅只对输入层的输入数据x进行标准化，还对每个隐藏层的输入进行标准化。<sup>[3]</sup>
 
-![avatar](images\dl-layer\batch-normalization1.jpg)
+![avatar](images/dl-layer/batch-normalization1.jpg)
 
 
 0. 矩阵$x$先经过$W_{h_1}$的线性变换后得到$s_1$ (注：因为减去batch的平均值$\mu_B$后，b的作用会被抵消掉，所提没必要加入b了）
@@ -24,7 +24,7 @@ $\sigma_B^2=\frac{1}{m}\sum_{i=0}^m(Wx_i-\mu_B)^2$ <br/>
 
 
 
-![avatar](images\dl-layer\batch-normalization2.jpg)
+![avatar](images/dl-layer/batch-normalization2.jpg)
 
 Internal Covariate Shift”: covariate shift就是分布不一致假设之下的一个分支问题，它是指源空间和目标空间的条件概率是一致的，但是其边缘概率不同，即：对所有$x\in \mathcal{X},P_s(Y|X=x)=P_t(Y|X=x)$，但是$P_s(X) \ne P_t(X)$. 对于神经网络的各层输出，由于它们经过了层内操作作用，其分布显然与各层对应的输入信号分布不同，而且差异会随着网络深度增大而增大，可是它们所能“指示”的样本标记（label）仍然是不变的，这便符合了covariate shift的定义。由于是对层间信号的分析，也即是“internal”的来由。<sup>[1]
 

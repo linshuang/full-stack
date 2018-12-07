@@ -21,7 +21,7 @@
 当用于输出层时，可用于回归或者二元分类
 $$f(x)=\frac{1}{(1+e^{-x})}$$
 
-![avatar](images\dl-activation\sigmoid.jpg)
+![avatar](images/dl-activation/sigmoid.jpg)
 
 缺陷：
 1. 当输入稍微远离了坐标原点，函数的梯度就变得很小了，几乎为零。在神经网络反向传播的过程中，我们都是通过微分的链式法则来计算各个权重w的微分的。当反向传播经过了sigmod函数，这个链条上的微分就很小很小了，况且还可能经过很多个sigmod函数，最后会导致权重w对损失函数几乎没影响，这样不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。
@@ -49,7 +49,7 @@ $
 tanh是双曲正切函数，tanh函数和sigmod函数的曲线是比较相近
 $$f(x)=\frac{e^{x}-e^{-x}}{(e^{x}+e^{-x})}$$
 
-![avatar](images\dl-activation\tanh.jpg)
+![avatar](images/dl-activation/tanh.jpg)
 
 优点：
 1. 整个函数是以0为中心
@@ -61,21 +61,21 @@ $$f(x)=\frac{e^{x}-e^{-x}}{(e^{x}+e^{-x})}$$
 ## Softplus
 可粗略看作是连续可微的relu
 $$f(x)=\log(\exp(x)+1)$$
-![avatar](images\dl-activation\softplus1.jpg)
+![avatar](images/dl-activation/softplus1.jpg)
 
-![avatar](images\dl-activation\softplus2.jpg)
+![avatar](images/dl-activation/softplus2.jpg)
 
 
 ## Softsign
 $$f(x)=\frac{x}{abs(x) + 1}$$
-![avatar](images\dl-activation\softsign.jpg)
+![avatar](images/dl-activation/softsign.jpg)
  
 ## ReLU
 Rectified Linear Unit
 
 $$f(x)=max(0,x)$$
 
-![avatar](images\dl-activation\relu.jpg)
+![avatar](images/dl-activation/relu.jpg)
 
 几个优点：
 1. 在输入为正数的时候，不存在梯度饱和问题。
@@ -90,7 +90,7 @@ $$f(x)=max(0,x)$$
 针对ReLU的一个改进型，在负数区域内，PReLU有一个很小的斜率，这样也可以避免ReLU死掉的问题。
 $$f(x)=max(\alpha x, x), \alpha<1$$
 
-![avatar](images\dl-activation\prelu.jpg)
+![avatar](images/dl-activation/prelu.jpg)
 
 优点：
 1. 负数输入时，梯度不会完全为0
@@ -109,7 +109,7 @@ $$ f(x)=\left\{
 \right.
 $$
 
-![avatar](images\dl-activation\elu.jpg)
+![avatar](images/dl-activation/elu.jpg)
 
 优点：
 1. elu由于其正值特性，可以像relu,lrelu,prelu一样缓解梯度消失的问题
