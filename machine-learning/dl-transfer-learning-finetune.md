@@ -19,7 +19,53 @@ fine-tune是迁移学习里的一种典型手段，直观上接近于参数迁�
 2. 使用更小的learning rate
 3. 冻结前面几层的权重
 
+# 使用预训练模型<sup>[3]
+加载模型
+```
+import keras
+import numpy as np
+from keras.applications import vgg16, inception_v3, resnet50, mobilenet
+ 
+#Load the VGG model
+vgg_model = vgg16.VGG16(weights='imagenet')
+ 
+#Load the Inception_V3 model
+inception_model = inception_v3.InceptionV3(weights='imagenet')
+ 
+#Load the ResNet50 model
+resnet_model = resnet50.ResNet50(weights='imagenet')
+ 
+#Load the MobileNet model
+mobilenet_model = mobilenet.MobileNet(weights='imagenet')
+```
+使用模型进行预测。注意输入往往用的是preprocess_input。
+如下是vgg16
+```
+# prepare the image for the VGG model
+processed_image = vgg16.preprocess_input(image_batch.copy())
+ 
+# get the predicted probabilities for each class
+predictions = vgg_model.predict(processed_image)
+# print predictions
+ 
+# convert the probabilities to class labels
+# We will get top 5 predictions which is the default
+label = decode_predictions(predictions)
+print label
+```
+调整个别层，形成最终的模型
+```
+# 例如对与resnet的fine-tune
+x = model.layers[-2].output
+x = Dense(nb_classes, activation='softmax', name='fc'+str(nb_classes))(x)
+model = Model(model.layers[0].input, x)
+for i in range(142):  # 关闭前面4个stage的训练
+    layer = model.layers[i]
+    layer.trainable = False
+```
+
 
 # 参考
 [1] [fine tuning](http://wiki.fast.ai/index.php/Fine_tuning)<br/>
 [2] [A Comprehensive guide to Fine-tuning Deep Learning Models in Keras ](https://flyyufelix.github.io/2016/10/03/fine-tuning-in-keras-part1.html)<br/>
+[3] [Using pre-trained Imagenet models](https://www.learnopencv.com/keras-tutorial-using-pre-trained-imagenet-models/)<br/>
