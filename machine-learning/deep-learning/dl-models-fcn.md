@@ -1,11 +1,12 @@
-# 引言
+# FCN (fully convolution network)
+## 引言
 Jonathan Long/Evan Shelhamer等人提出的将卷积神经网络运用于语义分割的方法，差不多是神经网络在这个领域的开山作。
 
 作者提出了通过在分类网络中将“全连接层”转变为“卷积层”，从而得到“全卷积网络”，该全卷积网络能够有效地学习到逐像素的稠密预测的能力，例如语义分割。同时作者发现采用skip结构，将浅层与深层输出结合，能够获得更为精准的效果。
 
 ![avatar](images/dl-models/fcn/fully-convolution-network.jpg)
 
-# 特点
+## 特点
 - 全卷积网络
 - 可接受任意尺寸的图像
 ```
@@ -24,9 +25,9 @@ Jonathan Long/Evan Shelhamer等人提出的将卷积神经网络运用于语义�
 - 采用skip结构，联合浅层和深层输出，从而达到更好的预测效果  
 ![avatar](images/dl-models/fcn/skip.jpg)
 
-# 不足
+## 不足
 - 产生的结构仍旧不够精细
 
 
-# 参考
+## 参考
 [1] [原论文](thesis/FullyConvolutionalNetworksforSemanticSegmentation.pdf)<br/>

@@ -1,9 +1,12 @@
 # AlexNet
+## 引言
  AlexNet由Alex Krizhevsky于2012年提出，夺得2012年ILSVRC比赛的冠军，top5预测的错误率为16.4%，远超第一名。AlexNet采用8层的神经网络，5个卷积层和3个全连接层(3个卷积层后面加了最大池化层)，包含6亿3000万个链接，6000万个 参数和65万个神经元。
+
+## 结构
 
 ![avatar](images/dl-alexnet/architecture.jpg)
 
-特点：
+## 特点：
 - 深、宽
 - Dropout
 ```
@@ -18,6 +21,6 @@
 - 使用CUDA加速深度卷积网络的训练
 - 使用数据增强
 
-# 参考
+## 参考
 [1] [原论文](./thesis/imagenet-classification-with-deep-convolutional-neural-networks.pdf)<br/>
 [1] [AlexNet介绍](https://blog.csdn.net/u013181595/article/details/80972594) <br/>

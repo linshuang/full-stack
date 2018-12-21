@@ -1,7 +1,9 @@
+# 输入预处理
+## 概念
 一般都是归一和中心化。据传有更吊的白话whiten
 
-# 附录
-## keras中关于imagenet的预处理李代码
+## 附录
+### keras中关于imagenet的预处理李代码
 ```
 imagenet_utils.py
 
