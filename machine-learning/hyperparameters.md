@@ -19,3 +19,9 @@
 - learning rate decay：学习因子下降参数
 - mini-batch size：批量训练样本包含的样本个数
 - $\beta_1$,$\beta_2$,$\varepsilon$ ：Adam算法参数
+
+## 快速搜索
+sklearn.model_selection.GridSearchCV
+sklearn.model_selection.ParameterGrid
+sklearn.model_selection.RandomizedSearchCV
+sklearn.model_selection.fit_grid_point
