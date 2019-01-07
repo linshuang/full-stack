@@ -30,4 +30,4 @@ Jonathan Long/Evan Shelhamer等人提出的将卷积神经网络运用于语义�
 
 
 ## 参考
-[1] [原论文](thesis/FullyConvolutionalNetworksforSemanticSegmentation.pdf)<br/>
+- [1] [原论文](thesis/FullyConvolutionalNetworksforSemanticSegmentation.pdf)
