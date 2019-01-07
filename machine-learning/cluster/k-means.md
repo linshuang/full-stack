@@ -27,4 +27,4 @@ $SSE=∑_{i=1}^k∑_{x∈C_i}dist(x,c_i)$
 - k值的选取也会直接影响聚类结果，最优聚类的k值应与样本数据本身的结构信息相吻合，而这种结构信息是很难去掌握，因此选取最优k值是非常困难的。
 
 ## 参考
-[1] [k-means](http://www.cnblogs.com/en-heng/p/5173704.html)<br/>
+- [1] [k-means](http://www.cnblogs.com/en-heng/p/5173704.html)

@@ -135,9 +135,9 @@ keras上內建实现的resnet50采用给的就是relu+bn
 
 
 ## 参考
-[1] [百科--激活函数](https://baike.baidu.com/item/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/2520792?fr=aladdin) <br/>
-[2] [keras里内置的激活函数](https://keras.io/activations/#exponential) <br/>
-[3] [几种常用激活函数的简介](https://blog.csdn.net/kangyi411/article/details/78969642) <br/>
-[4] [激活函数（relu，prelu，elu，+BN）对比on cifar10]( https://blog.csdn.net/m0_37561765/article/details/78398098) <br/>
-[5] [Delving Deep into Rectifiers:
-Surpassing Human-Level Performance on ImageNet Classification](https://arxiv.org/pdf/1502.01852.pdf) <br/>
+- [1] [百科--激活函数](https://baike.baidu.com/item/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/2520792?fr=aladdin) 
+- [2] [keras里内置的激活函数](https://keras.io/activations/#exponential) 
+- [3] [几种常用激活函数的简介](https://blog.csdn.net/kangyi411/article/details/78969642) 
+- [4] [激活函数（relu，prelu，elu，+BN）对比on cifar10]( https://blog.csdn.net/m0_37561765/article/details/78398098) 
+- [5] [Delving Deep into Rectifiers:
+Surpassing Human-Level Performance on ImageNet Classification](https://arxiv.org/pdf/1502.01852.pdf) 

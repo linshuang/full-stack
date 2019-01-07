@@ -13,4 +13,4 @@
 构建源域和目标域之间的关系知识映射。这两个域是相关域和i.i.d(独立同分布)假设在每个域中都是不严格的
 
 ## 参考
-[1] [A Survey on Transfer Learning](thesis/A_Survey_on_Transfer_Learning.pdf)<br/>
+- [1] [A Survey on Transfer Learning](thesis/A_Survey_on_Transfer_Learning.pdf)

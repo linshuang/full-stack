@@ -56,7 +56,7 @@ Batch Normalization的加速作用体现在两个方面：一是归一化了每�
 
 
 # 参考
-[1] [深度学习中 Batch Normalization为什么效果好](https://www.zhihu.com/question/38102762) <br/>
-[2] [bn阅读笔记](https://blog.csdn.net/happynear/article/details/44238541) <br/>
-[3] [深度学习中的Batch Normalization](https://blog.csdn.net/whitesilence/article/details/75667002) <br/>
-[4] [卷积层百科](https://baike.baidu.com/item/%E5%8D%B7%E7%A7%AF%E5%B1%82/22701737?fr=aladdin) <br/>
+- [1] [深度学习中 Batch Normalization为什么效果好](https://www.zhihu.com/question/38102762) 
+- [2] [bn阅读笔记](https://blog.csdn.net/happynear/article/details/44238541) 
+- [3] [深度学习中的Batch Normalization](https://blog.csdn.net/whitesilence/article/details/75667002) 
+- [4] [卷积层百科](https://baike.baidu.com/item/%E5%8D%B7%E7%A7%AF%E5%B1%82/22701737?fr=aladdin) 

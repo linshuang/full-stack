@@ -84,7 +84,7 @@ $$L_{MSE}=\frac{\sum_{i=1}^n{|y_i-y_i'|}}{n}$$
 ### Quantiel Loss
 
 # 参考
-[1] [机器学习中常用的损失函数](https://www.jiqizhixin.com/articles/091202) <br/>
-[2] [Cross-entropy loss explanation](https://datascience.stackexchange.com/questions/20296/cross-entropy-loss-explanation) <br/>
-[3] [Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names](https://gombru.github.io/2018/05/23/cross_entropy_loss/) <br/>
-[4] [Focal Loss理解](https://www.cnblogs.com/king-lps/p/9497836.html) <br/>
+- [1] [机器学习中常用的损失函数](https://www.jiqizhixin.com/articles/091202) 
+- [2] [Cross-entropy loss explanation](https://datascience.stackexchange.com/questions/20296/cross-entropy-loss-explanation) 
+- [3] [Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names](https://gombru.github.io/2018/05/23/cross_entropy_loss/) 
+- [4] [Focal Loss理解](https://www.cnblogs.com/king-lps/p/9497836.html) 

@@ -42,7 +42,7 @@ Total number of steps (batches of samples) to yield from generator before declar
 
 ## 特征缩放 FatureScaling
 ## 均值归一化 mean normalizaion
-[1] [从梯度下降到Adam方法](https://www.sohu.com/a/149921578_610300)<br/>
-[2] [优化入门1](https://blog.csdn.net/weixin_42398658/article/details/84502215#comments)<br/>
-[3] [优化入门2](https://blog.csdn.net/weixin_42398658/article/details/84525917)<br/>
-[4] [梯度下降](https://blog.csdn.net/pipisorry/article/details/23692455)<br/>
+- [1] [从梯度下降到Adam方法](https://www.sohu.com/a/149921578_610300)
+- [2] [优化入门1](https://blog.csdn.net/weixin_42398658/article/details/84502215#comments)
+- [3] [优化入门2](https://blog.csdn.net/weixin_42398658/article/details/84525917)
+- [4] [梯度下降](https://blog.csdn.net/pipisorry/article/details/23692455)

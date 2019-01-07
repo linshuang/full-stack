@@ -25,6 +25,6 @@ MLP（Multi-Layer Perceptron），即多层感知器，是一种前向结构的�
 
 
 ## 参考
-[1] [从感知机到深度网络](https://www.cnblogs.com/xiaowanyer/p/3701944.html) <br/>
-[2] [感知机](https://blog.csdn.net/sinat_30537123/article/details/74141220) <br/>
-[3] [多层感知机wiki] (https://en.wikipedia.org/wiki/Multilayer_perceptron)
+- [1] [从感知机到深度网络](https://www.cnblogs.com/xiaowanyer/p/3701944.html) 
+- [2] [感知机](https://blog.csdn.net/sinat_30537123/article/details/74141220) 
+- [3] [多层感知机wiki] (https://en.wikipedia.org/wiki/Multilayer_perceptron)

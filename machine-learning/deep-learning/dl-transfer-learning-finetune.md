@@ -68,6 +68,6 @@ for i in range(142):  # 关闭前面4个stage的训练
 
 
 ## 参考
-[1] [fine tuning](http://wiki.fast.ai/index.php/Fine_tuning)<br/>
-[2] [A Comprehensive guide to Fine-tuning Deep Learning Models in Keras ](https://flyyufelix.github.io/2016/10/03/fine-tuning-in-keras-part1.html)<br/>
-[3] [Using pre-trained Imagenet models](https://www.learnopencv.com/keras-tutorial-using-pre-trained-imagenet-models/)<br/>
+- [1] [fine tuning](http://wiki.fast.ai/index.php/Fine_tuning)
+- [2] [A Comprehensive guide to Fine-tuning Deep Learning Models in Keras ](https://flyyufelix.github.io/2016/10/03/fine-tuning-in-keras-part1.html)
+- [3] [Using pre-trained Imagenet models](https://www.learnopencv.com/keras-tutorial-using-pre-trained-imagenet-models/)
