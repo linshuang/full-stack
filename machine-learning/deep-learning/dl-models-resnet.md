@@ -12,7 +12,7 @@
 
 通过引进深度残差学习框架（deep residual learning framework.），作者解决了深度网络的降级问题。让堆叠的层去fit残差映射，而不是直接去fit一个期望的隐含的映射（故叫做残差网络）。作者没有证明这样做为什么能够带来模型训练上的优势，但是举了个极端例子：假如恒等映射是最优的，那么将残差部分push到0肯定比让一堆非线性层学会恒等网络来得简单。
 
-可以通过带shortcut connections的前向网络来实现残差块，如下图。
+可以通过带shortcut connections的前向网络来实现残差块，如下图。左侧中间两个块做的就是拟合残差的工作，右侧弧线则是恒等。
 
 ![avatar](images/dl-models/resnet/residual-block.jpg)
 
@@ -23,6 +23,7 @@ $$y = F(x; {W_i}) +W_sx \tag{$2$}$$
 各种层数的ResNet如下所示：
 
 ![avatar](images/dl-models/resnet/variants.jpg)
+
 
 ## 参考
 - [1] [原论文](thesis/Deep_Residual_Learning_for_Image_Recognition.pdf)
