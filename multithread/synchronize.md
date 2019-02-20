@@ -1,7 +1,10 @@
 # synchronize同步
 
 
-### CAS( Compare And Swap)
+### CAS( Compare And Swap)<sup>[4]</sup>
+In computer science, compare-and-swap (CAS) is an atomic instruction used in multithreading to achieve synchronization. It compares the contents of a memory location to a given value and, only if they are the same, modifies the contents of that memory location to a given new value. This is done as a single atomic operation.
+
+在计算机科学里，cas是一个用于多线程中获得同步的原子指令。它使用一个给定值与特定内存位置的内容进行比较，当且仅当他们相同时，修改内存里的值为给定值。以上都是原子操作。
 
 ## semaphore 信号量<sup>[2]</sup>
 信号量通过一个计数器控制对共享资源的访问，信号量的值是一个非负整数，所有通过它的线程都会将该整数减一。如果计数器大于0，则访问被允许，计数器减1；如果为0，则访问被禁止，所有试图通过它的线程都将处于等待状态。
@@ -94,3 +97,4 @@ Mutex可以被抽象为四个操作：
 - [1] [深入理解自旋锁](https://blog.csdn.net/qq_34337272/article/details/81252853)
 - [2] [线程同步-互斥锁与信号量的作用与区别](https://www.cnblogs.com/alinh/p/6905221.html)
 - [3] [可重入锁和不可重入锁](https://www.cnblogs.com/dj3839/p/6580765.html)
+- [4] [CAS](https://en.wikipedia.org/wiki/Compare-and-swap)
