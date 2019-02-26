@@ -1,6 +1,19 @@
-# 损失函数
+# 目标函数/损失函数/代价函数
 ## 引言
-损失函数（Loss function）用于评估模型预测值f(x)与真实Y的不一致程度。损失函数是经验风险函数的核心部分
+》 损失函数：计算的是一个样本的误差
+
+》 代价函数：是整个训练集上所有样本误差的平均
+
+》 目标函数：代价函数 + 正则化项
+
+损失函数和代价函数是同一个东西，目标函数是一个与他们相关但更广的概念。损失函数（Loss function）用于评估模型预测值h(x)与真实Y的不一致程度。损失函数是经验风险函数的核心部分。这个函数就称为损失函数(loss function)，或者叫代价函数(cost function)。损失函数越小，就代表模型拟合的越好。<sup>[5]</sup>
+$$\frac{1}{N}\sum_{i=1}^{N}L(y_i,h(x_i))$$
+
+损失函数越小，就代表模型拟合的越好。那是不是我们的目标就只是让loss function越小越好呢？还不是。这个时候还有一个概念叫风险函数(risk function)。风险函数是损失函数的期望，这是由于我们输入输出的$(X,Y)$遵循一个联合分布，但是这个联合分布是未知的，所以无法计算。但是我们是有历史数据的，就是我们的训练集，$h(X)$关于训练集的平均损失称作经验风险(empirical risk)，所以在训练集上最小化损失函数仅仅只是最小化经验风险。
+
+但是如果一味地提升模型复杂度来最小化经验风险，则会导致结构风险过大。这个时候就定义了一个函数J(f)，这个函数专门用来度量模型的复杂度，在机器学习中也叫正则化(regularization)。常用的有L1， L2范数。如此就有了目标函数：
+
+$$\frac{1}{N}\sum_{i=1}^{N}L(y_i,h(x_i))+\lambda J(h)$$
 
 ## 风险
 ### 经验风险
@@ -16,6 +29,20 @@ $$R_{exp}(f)=\frac{\sum_N^i{L(y_i,f(x_i))}}{N}$$
 结构风险是经验风险和期望风险的折中。它在经验风险函数的后面加了一个正则化项（惩罚项）。
 $$R_{exp}(f)=\frac{\sum_N^i{L(y_i,f(x_i))}+\lambda J(f)}{N},J(f)表示模型复杂度$$
 但个人认为当样本越多，越接近真实分布，越少需要考虑的结构风险
+
+## L0/L1/L2范数<sup>[6]</sup>
+L0范数是指向量中非0的元素的个数。如果我们用L0范数来规则化一个参数矩阵W的话，就是希望$W$的大部分元素都是0。换句话说，让参数$W$是稀疏的。
+
+L1范数是指向量中各个元素绝对值之和。L1范数是L0范数的最优凸近似。任何的规则化算子，如果他在Wi=0的地方不可微，并且可以分解为一个“求和”的形式，那么这个规则化算子就可以实现稀疏。$W$的L1范数是绝对值，$|w|$在$w=0$处是不可微。
+```
+虽然L0可以实现稀疏，但是实际中会使用L1取代L0。
+因为L0范数很难优化求解，L1范数是L0范数的最优凸近似，它比L0范数要容易优化求解。
+```
+L2范数，又叫“岭回归”（Ridge Regression）、“权值衰减”（weight decay）。这用的很多吧，它的作用是改善过拟合。 L2范数是指向量中各元素的平方和然后开根。我们让L2范数的规则项||W||2最小，可以使得$W$的每个元素都很小，都接近于0。而越小的参数说明模型越简单，越简单的模型则越不容易产生过拟合现象。
+
+```
+L1会趋向于产生少量的特征，而其他的特征都是0，而L2相对更倾向选择更多的特征，但这些特征都会接近于0。
+```
 
 ## 分类损失<sup>[1]
 ### 0-1损失函数
@@ -88,3 +115,5 @@ $$L_{MSE}=\frac{\sum_{i=1}^n{|y_i-y_i'|}}{n}$$
 - [2] [Cross-entropy loss explanation](https://datascience.stackexchange.com/questions/20296/cross-entropy-loss-explanation) 
 - [3] [Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names](https://gombru.github.io/2018/05/23/cross_entropy_loss/) 
 - [4] [Focal Loss理解](https://www.cnblogs.com/king-lps/p/9497836.html) 
+- [5] [深入理解机器学习中的：目标函数，损失函数和代价函数](https://blog.csdn.net/qq_28448117/article/details/79199835)
+- [6] [深度学习——L0、L1及L2范数](https://blog.csdn.net/zchang81/article/details/70208061)
