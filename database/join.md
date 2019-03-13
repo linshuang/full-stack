@@ -165,4 +165,4 @@ ORDER BY F.EmployeeID, S.EmployeeID;
 ```
 
 ## 参考
-- [0] [wiki](https://en.wikipedia.org/wiki/Join_(SQL)#Cross_join)
+- [1] [wiki](https://en.wikipedia.org/wiki/Join_(SQL)#Cross_join)
