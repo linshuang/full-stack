@@ -7,6 +7,18 @@ Reactor是一个完全非阻塞的JVM响应式编程基础。Reactor直接集成
 ## 操作符
 在Reactor里，operator操作符往Publisher上添加行为并且封装前一步的Publisher进一个新的实例。如此数据产生自第一个Publisher并且从链往下流转。最后，Subscriber 来最后完结这一过程。在这里，nothing happens until a Subscriber subscribes to a Publisher。
 
+下表列举了部分操作符<sup>[2]</sup>
+| 操作符 | 返回 | 作用描述 |
+| ---- | ---- | ---- |
+| map | Flux<V> | 对序列中给的每项应用输入的Function进行转换 |
+| flatMap | Flux<V> | 把一个发射器通过某种方法转换为多个，然后再把这些分散的Publisher装进一个单一的发射器Flux。 |
+| next | Mono<T> | 发射Flux中的第一项到一个Mono中 |
+| merge | Mono<T> | 合并多个publisher里序列的数据 |
+| fliter | Flux<V> | 使用断言Predicate评价序列中的每一项，发射测试通过的项 |
+| all | Mono<V> | 当序列中的所有项均符合断言Predicate的时候发射一个true |
+| any | Mono<V> | 当序列中的任一项符合断言Predicate的时候发射一个true |
+| onBackpressureBuffer | Flux<T> | Request an unbounded demand and push to the returned Flux, or park the observed elements if not enough demand is requested downstream. 使用缓冲区来缓冲上游信号，缓冲的机制有多种具体视方法。 |
+
 ### Flux
 ![avatar](https://raw.githubusercontent.com/reactor/reactor-core/v3.0.7.RELEASE/src/docs/marble/flux.png)
 
@@ -24,6 +36,7 @@ Mono<Void>可以被用来表示无值的只存在完成概念的异步过程（�
 ### 快速创建和订阅
 使用列表创建
 ```
+// 创建一个发射所输入序列的Flux并且complete
 Flux<String> seq1 = Flux.just("foo", "bar", "foobar");
 
 List<String> iterable = Arrays.asList("foo", "bar", "foobar");
@@ -137,3 +150,4 @@ new Thread(() -> flux.subscribe(System.out::println));//（5）
 
 ## 参考
 - [1] [projectreactor官网](https://projectreactor.io)
+- [2] [Reactor操作符](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#all-java.util.function.Predicate-)
