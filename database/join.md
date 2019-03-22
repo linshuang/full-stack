@@ -164,5 +164,6 @@ WHERE F.EmployeeID < S.EmployeeID
 ORDER BY F.EmployeeID, S.EmployeeID;
 ```
 
+
 ## 参考
 - [1] [wiki](https://en.wikipedia.org/wiki/Join_(SQL)#Cross_join)
