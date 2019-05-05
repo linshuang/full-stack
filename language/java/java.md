@@ -1,1 +1,1 @@
-![avatar](./java.jpg)
+![avatar](./images/java.jpg)
