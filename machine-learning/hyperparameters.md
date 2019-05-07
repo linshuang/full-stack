@@ -21,7 +21,8 @@
 - $\beta_1$,$\beta_2$,$\varepsilon$ ：Adam算法参数
 
 ## 快速搜索
-sklearn.model_selection.GridSearchCV
-sklearn.model_selection.ParameterGrid
-sklearn.model_selection.RandomizedSearchCV
-sklearn.model_selection.fit_grid_point
+sklearn包提供了一组用于快速搜索超参的工具，包括：
+- sklearn.model_selection.GridSearchCV
+- sklearn.model_selection.ParameterGrid
+- sklearn.model_selection.RandomizedSearchCV
+- sklearn.model_selection.fit_grid_point
