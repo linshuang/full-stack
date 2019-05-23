@@ -242,13 +242,152 @@ class Mutex {
 下面是java.util.concurrent包中同步器定义方式的概述：
 
 ### 3.1 ReentrantLock类
-ReentrantLock类使用AQS同步状态来保存锁（重复）持有的次数。当锁被一个线程获取时，ReentrantLock也会记录下当前获得锁的线程标识，以便检查是否是重复获取，以及当错误的线程（译者注：如果线程不是锁的持有者，在此线程中执行该锁的unlock操作就是非法的）试图进行解锁操作时检测是否存在非法状态异常。ReentrantLock也使用了AQS提供的ConditionObject，还向外暴露了其它监控和监测相关的方法。ReentrantLock通过在内部声明两个不同的AbstractQueuedSynchronizer实现类（提供公平模式的那个禁用了闯入策略）来实现可选的公平模式，在创建ReentrantLock实例的时候根据设置（译者注：即ReentrantLock构造方法中的fair参数）使用相应的AbstractQueuedSynchronizer实现类。
+ReentrantLock类使用AQS同步状态来保存锁（重复）持有的次数（Sync类，AQS子类）。
+
+当锁被一个线程获取时，ReentrantLock也会记录下当前获得锁的线程标识，以便检查是否是重复获取，以及当错误的线程（译者注：如果线程不是锁的持有者，在此线程中执行该锁的unlock操作就是非法的）试图进行解锁操作时检测是否存在非法状态异常。ReentrantLock也使用了AQS提供的ConditionObject，还向外暴露了其它监控和监测相关的方法。
+
+ReentrantLock通过在内部声明两个不同的AbstractQueuedSynchronizer实现类（提供公平模式的那个禁用了闯入策略）来实现可选的公平模式，在创建ReentrantLock实例的时候根据设置（译者注：即ReentrantLock构造方法中的fair参数）使用相应的AbstractQueuedSynchronizer实现类。
+
+```
+private final Sync sync;
+```
+
+```
+public void lock() {
+    sync.lock(); // 可能调用acquire();
+}
+public boolean tryLock() {
+    return sync.nonfairTryAcquire(1);
+}
+```
+
+```
+public void unlock() {
+    sync.release(1); // 调用tryRelease
+}
+```
+
+```
+// ReentrantLock.Sync
+protected final boolean tryRelease(int releases) {
+    int c = getState() - releases;
+    if (Thread.currentThread() != getExclusiveOwnerThread())
+        throw new IllegalMonitorStateException();
+    boolean free = false;
+    if (c == 0) {
+        free = true;
+        setExclusiveOwnerThread(null);
+    }
+    setState(c);
+    return free;
+}
+```
+
+```
+// 根据不同的sync实现决定是公平锁还是非公平锁
+// ReentrantLock.FairSync extends Sync
+protected final boolean tryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    int c = getState();
+    if (c == 0) {
+        if (!hasQueuedPredecessors() &&
+            compareAndSetState(0, acquires)) {
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc < 0)
+            throw new Error("Maximum lock count exceeded");
+        setState(nextc);
+        return true;
+    }
+    return false;
+}
+```
 
 ### 3.2 ReentrantReadWriteLock类
 ReentrantReadWriteLock类使用AQS同步状态中的16位来保存写锁持有的次数，剩下的16位用来保存读锁的持有次数。WriteLock的构建方式同ReentrantLock。ReadLock则通过使用acquireShared方法来支持同时允许多个读线程。
 
+```
+final Sync sync;
+class Sync{
+    private transient ThreadLocalHoldCounter readHolds;
+    ....
+    static final class ThreadLocalHoldCounter
+        extends ThreadLocal<HoldCounter> {
+        public HoldCounter initialValue() {
+            return new HoldCounter();
+        }
+    }
+    static final class HoldCounter {
+        int count = 0;
+        // Use id, not reference, to avoid garbage retention
+        final long tid = getThreadId(Thread.currentThread());
+    }
+}
+```
+```
+protected final boolean tryRelease(int releases) {
+    if (!isHeldExclusively())
+        throw new IllegalMonitorStateException();
+    int nextc = getState() - releases;
+    boolean free = exclusiveCount(nextc) == 0;
+    if (free)
+        setExclusiveOwnerThread(null);
+    setState(nextc);
+    return free;
+}
+protected final boolean tryAcquire(int acquires) {
+    /*
+        * Walkthrough:
+        * 1. If read count nonzero or write count nonzero
+        *    and owner is a different thread, fail.
+        * 2. If count would saturate, fail. (This can only
+        *    happen if count is already nonzero.)
+        * 3. Otherwise, this thread is eligible for lock if
+        *    it is either a reentrant acquire or
+        *    queue policy allows it. If so, update state
+        *    and set owner.
+        */
+    Thread current = Thread.currentThread();
+    int c = getState();
+    int w = exclusiveCount(c);
+    if (c != 0) {
+        // (Note: if c != 0 and w == 0 then shared count != 0)
+        if (w == 0 || current != getExclusiveOwnerThread())
+            return false;
+        if (w + exclusiveCount(acquires) > MAX_COUNT)
+            throw new Error("Maximum lock count exceeded");
+        // Reentrant acquire
+        setState(c + acquires);
+        return true;
+    }
+    if (writerShouldBlock() ||
+        !compareAndSetState(c, c + acquires))
+        return false;
+    setExclusiveOwnerThread(current);
+    return true;
+}
+```
+```
+// 获取排他的数目，也就是读锁的数目，这数目保存于state的上16位
+static int exclusiveCount(int c) { return c & EXCLUSIVE_MASK; }
+```
+
 ### 3.3 Semaphore类
 Semaphore类（计数信号量）使用AQS同步状态来保存信号量的当前计数。它里面定义的acquireShared方法会减少计数，或当计数为非正值时阻塞线程；tryRelease方法会增加计数，可能在计数为正值时还要解除线程的阻塞。
+
+```
+private final Sync sync;
+```
+```
+Sync(int permits) {
+    setState(permits);
+}
+```
+
 
 ### 3.4 CountDownLatch类
 CountDownLatch类使用AQS同步状态来表示计数。当该计数为0时，所有的acquire操作（译者注：acquire操作是从aqs的角度说的，对应到CountDownLatch中就是await方法）才能通过。
