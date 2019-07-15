@@ -1,7 +1,11 @@
 # java.util.concurrent并发框架解析
 **转载自 https://www.jianshu.com/p/bff4ffb34e00**
 ## 1. 概述
-在jdk1.4以前,java的内置锁(使用synchronized的方法或代码块)性能问题一直都在被人们关注.jdk1.5中加入了java.concurrent.util包, 来实现高性能的同步器(如ReentrantLock, CountDownLatch等)。
+在jdk1.4以前,java的内置锁(使用synchronized的方法或代码块)性能问题一直都在被人们关注。
+
+通过JCP的JSR166规范，Java的1.5版本引入了j.u.c包，这个包提供了一系列支持中等程度并发的类。这些组件是一系列的同步器（抽象数据类型(ADT)）。这些同步器主要维护着以下几个功能：内部同步状态的管理(例如：表示一个锁的状态是获取还是释放)，同步状态的更新和检查操作，且至少有一个方法会导致调用线程在同步状态被获取时阻塞，以及在其他线程改变这个同步状态时解除线程的阻塞。上述的这些的实际例子包括：互斥排它锁的不同形式、读写锁、信号量、屏障、Future、事件指示器以及传送队列等。
+
+几乎任一同步器都可以用来实现其他形式的同步器。例如，可以用可重入锁实现信号量或者用信号量实现可重入锁。但是，这样做带来的复杂性，开销，不灵活使其至多只能是个二流工程。且缺乏吸引力。如果任何这样的构造方式不能在本质上比其他形式更简洁，那么开发者就不应该随意地选择其中的某个来构建另一个同步器。取而代之，JSR166建立了一个小框架，AQS类。这个框架为构造同步器提供一种通用的机制，并且被j.u.c包中大部分类使用，同时很多用户也用它来定义自己的同步器。
 
 java.util.concurrent包的目的有两个：1.提升性能(相比于synchronized)； 2.实现同步器的基本功能(acquire和release)。
 
@@ -403,4 +407,5 @@ SynchronousQueues类（一种CSP（Communicating Sequential Processes）形式�
 
 
 ## 参考
-- [1] [java.util.concurrent并发框架解析](https://www.jianshu.com/p/bff4ffb34e00)
+- [1] [The j.u.c Synchronizer Framework翻译(一)背景与需求](http://ifeve.com/aqs-1/)
+- [2] [The j.u.c Synchronizer Framework翻译(二)设计与实现](http://ifeve.com/aqs-2/)
