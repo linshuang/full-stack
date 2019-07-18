@@ -1,7 +1,7 @@
 # synchronize同步
 
 
-### CAS( Compare And Swap)<sup>[4]</sup>
+## CAS( Compare And Swap)<sup>[4]</sup>
 In computer science, compare-and-swap (CAS) is an atomic instruction used in multithreading to achieve synchronization. It compares the contents of a memory location to a given value and, only if they are the same, modifies the contents of that memory location to a given new value. This is done as a single atomic operation.
 
 在计算机科学里，cas是一个用于多线程中获得同步的原子指令。它使用一个给定值与特定内存位置的内容进行比较，当且仅当他们相同时，修改内存里的值为给定值。以上都是原子操作。
@@ -15,17 +15,17 @@ Semaphore可以被抽象为五个操作：
 
 - 创建 Create
 - 等待 Wait：
-```
-线程等待信号量，如果值大于0，则获得，值减一；如果只等于0，则一直线程进入睡眠状态，知道信号量值大于0或者超时。
-```
+    ```
+    线程等待信号量，如果值大于0，则获得，值减一；如果只等于0，则一直线程进入睡眠状态，知道信号量值大于0或者超时。
+    ```
 - 释放 Post
-```
-执行释放信号量，则值加一；如果此时有正在等待的线程，则唤醒该线程。
-```
+    ```
+    执行释放信号量，则值加一；如果此时有正在等待的线程，则唤醒该线程。
+    ```
 - 试图等待 TryWait
-```
-如果调用TryWait，线程并不真正的去获得信号量，还是检查信号量是否能够被获得，如果信号量值大于0，则TryWait返回成功；否则返回失败。
-```
+    ```
+    如果调用TryWait，线程并不真正的去获得信号量，还是检查信号量是否能够被获得，如果信号量值大于0，则TryWait返回成功；否则返回失败。
+    ```
 - 销毁 Destroy
 
 ## mutex 互斥量<sup>[2]</sup>
